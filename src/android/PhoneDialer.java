@@ -181,7 +181,7 @@ public class PhoneDialer extends CordovaPlugin {
 			this.callbackContext.success();
 		} 
 		catch (Exception e) {
-			this.callbackContext.error("CouldNotCallPhoneNumber");
+			this.callbackContext.error("Call Error : " + e);
 		}
 	}
 	
@@ -198,17 +198,17 @@ public class PhoneDialer extends CordovaPlugin {
 			Intent intent = new Intent(Intent.ACTION_DIAL);
 			intent.setData(Uri.parse(number));
 
-			boolean bypassAppChooser = Boolean.parseBoolean(args.getString(1));
-			if (bypassAppChooser) {
-				intent.setPackage(getDialerPackage(intent));
-			}
+			// boolean bypassAppChooser = Boolean.parseBoolean(args.getString(1));
+			// if (bypassAppChooser) {
+			// 	intent.setPackage(getDialerPackage(intent));
+			// }
 
 			cordova.getActivity().startActivity(intent);
 
 			this.callbackContext.success();
 		} 
 		catch (Exception e) {
-			this.callbackContext.error("CouldNotCallPhoneNumber");
+			this.callbackContext.error("Dial Error : " + e);
 		}
 	}
 
