@@ -196,9 +196,7 @@ public class PhoneDialer extends CordovaPlugin {
 
 		try {
 
-			//Intent intent = new Intent(isTelephonyEnabled() ? Intent.ACTION_DIAL : Intent.ACTION_VIEW);
-			Intent intent = new Intent(Intent.ACTION_DIAL);
-			//intent.setData(Uri.parse("tel:" + number));
+			Intent intent = new Intent(isTelephonyEnabled() ? Intent.ACTION_DIAL : Intent.ACTION_VIEW);
 			intent.setData(Uri.parse(number));
 		
 			// boolean bypassAppChooser = Boolean.parseBoolean(args.getString(1));
