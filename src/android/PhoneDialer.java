@@ -177,11 +177,12 @@ public class PhoneDialer extends CordovaPlugin {
 			}
 			
 			cordova.getActivity().startActivity(intent);									
+			
 
 			this.callbackContext.success();
 		} 
 		catch (Exception e) {
-			this.callbackContext.error("Call Error : " + e);
+			this.callbackContext.error("_call Error : " +  e.getMessage());
 		}
 	}
 	
@@ -189,14 +190,23 @@ public class PhoneDialer extends CordovaPlugin {
 		String number = args.getString(0);
 		number = number.replaceAll("#", "%23");
 
-		if (!number.startsWith("tel:")) {
-			number = String.format("tel:%s", number);
-		}
-		
+		// if (!number.startsWith("tel:")) {
+		// 	number = String.format("tel:%s", number);
+		// }
+
 		try {
+
 			//Intent intent = new Intent(isTelephonyEnabled() ? Intent.ACTION_DIAL : Intent.ACTION_VIEW);
 			Intent intent = new Intent(Intent.ACTION_DIAL);
-			intent.setData(Uri.parse(number));
+			intent.setData(Uri.parse("tel:01022223333"));
+			//startActivity(intent);
+
+			// if (!number.startsWith("tel:")) {
+			// 	//number = String.format("tel:%s", number);
+			// 	intent.setData(Uri.parse("tel:" + number));
+			// }else{
+			// 	intent.setData(Uri.parse(number));
+			// }
 
 			// boolean bypassAppChooser = Boolean.parseBoolean(args.getString(1));
 			// if (bypassAppChooser) {
@@ -208,7 +218,7 @@ public class PhoneDialer extends CordovaPlugin {
 			this.callbackContext.success();
 		} 
 		catch (Exception e) {
-			this.callbackContext.error("Dial Error : " + e);
+			this.callbackContext.error("_dial Error : " + e.getMessage());
 		}
 	}
 
