@@ -190,20 +190,21 @@ public class PhoneDialer extends CordovaPlugin {
 		String number = args.getString(0);
 		number = number.replaceAll("#", "%23");
 
-		// if (!number.startsWith("tel:")) {
-		// 	number = String.format("tel:%s", number);
-		// }
+		if (!number.startsWith("tel:")) {
+			number = String.format("tel:%s", number);
+		}
 
 		try {
 
 			//Intent intent = new Intent(isTelephonyEnabled() ? Intent.ACTION_DIAL : Intent.ACTION_VIEW);
 			Intent intent = new Intent(Intent.ACTION_DIAL);
-			intent.setData(Uri.parse("tel:" + number));
+			//intent.setData(Uri.parse("tel:" + number));
+			intent.setData(Uri.parse(number));
 		
-			boolean bypassAppChooser = Boolean.parseBoolean(args.getString(1));
-			if (bypassAppChooser) {
-				intent.setPackage(getDialerPackage(intent));
-			}
+			// boolean bypassAppChooser = Boolean.parseBoolean(args.getString(1));
+			// if (bypassAppChooser) {
+			// 	intent.setPackage(getDialerPackage(intent));
+			// }
 
 			cordova.getActivity().startActivity(intent);
 
