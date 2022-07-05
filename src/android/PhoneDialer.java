@@ -198,7 +198,7 @@ public class PhoneDialer extends CordovaPlugin {
 
 			//Intent intent = new Intent(isTelephonyEnabled() ? Intent.ACTION_DIAL : Intent.ACTION_VIEW);
 			Intent intent = new Intent(Intent.ACTION_DIAL);
-			intent.setData(Uri.parse("tel:01022223333"));
+			intent.setData(Uri.parse("tel:" + number));
 			//startActivity(intent);
 
 			// if (!number.startsWith("tel:")) {
